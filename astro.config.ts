@@ -136,6 +136,44 @@ export default defineConfig({
                 // Head: "./src/components/ViewTransitons/Head.astro",
                 // Sidebar: "./src/components/ViewTransitons/Sidebar.astro",
             },
+            head: [
+                // {
+                //     tag: "meta",
+                //     attrs: {
+                //         property: "og:title",
+                //         content: "You're invited to brunch!",
+                //     },
+                // },
+                {
+                    tag: "meta",
+                    attrs: {
+                        property: "og:type",
+                        content: "website",
+                    },
+                },
+                {
+                    tag: "meta",
+                    attrs: {
+                        property: "og:image",
+                        content: "/social.webp",
+                    },
+                },
+                // {
+                //     tag: "meta",
+                //     attrs: {
+                //         property: "og:url",
+                //         content: "Astro.url"
+                //     }
+                // },
+                {
+                    tag: "meta",
+                    attrs: {
+                        property: "og:description",
+                        content:
+                            "Summer of Code is a program focused on enabling more developers to work on open source software.",
+                    },
+                },
+            ],
         }),
     ],
 });

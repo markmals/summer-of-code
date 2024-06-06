@@ -1,6 +1,6 @@
 ---
 title: Home
-description: Get started building your docs site with Starlight.
+description: Summer of Code is a program focused on enabling more developers to work on open source software.
 template: splash
 hero:
     title: Summer <span class="light">of</span> Code
@@ -13,9 +13,11 @@ hero:
           link: /ideas/0001-swift-signals
           icon: right-arrow
           variant: primary
-        # - text: Read the Starlight docs
-        #   link: https://starlight.astro.build
-        #   icon: external
+head:
+    - tag: meta
+      attrs:
+          property: og:title
+          content: Summer of Code
 ---
 
 import { Card, CardGrid } from "@astrojs/starlight/components";
