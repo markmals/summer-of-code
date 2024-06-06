@@ -18,9 +18,102 @@ import { Aside } from "@astrojs/starlight/components";
 
 ### Description
 
-<Aside type="caution" title="Description Needed">
-    A description is needed for this proposal.
-</Aside>
+Maybe it could look something like this:
+
+```swift
+import SwiftDB
+
+// Maybe this uses Observation
+// or maybe it uses Combine...?
+
+@Model
+class Author {
+    @Attribute(.primaryKey) var id: UInt
+    @Attribute(.unique) var name: String
+}
+
+@Model
+class Comment {
+    @Attribute(.primaryKey) var id: UInt
+    var body: String
+    var likes: UInt
+    var isFlagged: Bool
+    var published: Date
+    var authorID: UInt
+
+    @References(\Author.id)
+    var authorID: UInt?
+
+    @Transient var placeholderImage = Faker.image()
+}
+
+import SQLite
+// import Postgres
+// import MySQL
+// import MongoDB
+
+let client = SQLiteClient(configuration: config)
+//           PostgresClient(configuration: config)
+//           MySQLClient(configuration: config)
+//           MongoClient(configuration: config)
+
+let configuration = Database.Configuration(
+    syncProvider: CommentSyncDistributedActor.self,
+    // other options...
+)
+
+let db = Database(
+    for: client,
+    configuration: configuration,
+    schema: [Author.self, Comment.self]
+)
+
+let comment = Comment(
+    body: body,
+    likes: likes,
+    isFlagged: isFlagged,
+    published: published,
+    authorID: authorID
+)
+
+await db.insert(comment)
+
+var popularComments = FetchDescriptor<Comment>(
+    predicate: #Predicate { $0.likes >= 50 },
+    sortBy: [.init(\.published)]
+)
+
+popularComments.fetchLimit = 50
+popularComments.includePendingChanges = true
+
+let results = await db.fetch(popularComments)
+
+import SwiftUI
+
+@main
+struct FeedsApp: App {
+    var content: some Scene {
+        WindowGroup {
+            MainView().provide(db)
+        }
+    }
+}
+
+struct MainView: View {
+    @Environment(\.db) private var db
+
+    @Query(sort: \.published, order: .reverse)
+    var allComments: [Comment]
+
+    var content: some View {
+        List {
+            ForEach(allComments) { comment in
+                CommentView(for: comment)
+            }
+        }
+    }
+}
+```
 
 ### Expected Results
 
