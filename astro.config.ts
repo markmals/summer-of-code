@@ -8,7 +8,7 @@ const sidebar = [
     //     ]
     // },
     {
-        label: "💡 Ideas",
+        label: "🌟 Mark's Favorites",
         items: [
             {
                 label: "SOC-0001: Create a Reactive State Library for Swift",
@@ -18,6 +18,27 @@ const sidebar = [
                 label: "SOC-0002: Create a Torrent Automation System",
                 link: "/ideas/0002-torrent-automation/",
             },
+            {
+                label: "SOC-0007: Create a High Performance Fountain Parser",
+                link: "/ideas/0007-fountain-parser/",
+            },
+            {
+                label: "SOC-0015: Create a New Federated Platform Based on ActivityPub",
+                link: "/ideas/0015-new-federated-platform/",
+            },
+        ],
+    },
+    {
+        label: "💡 Other Ideas",
+        items: [
+            // {
+            //     label: "SOC-0001: Create a Reactive State Library for Swift",
+            //     link: "/ideas/0001-swift-signals/",
+            // },
+            // {
+            //     label: "SOC-0002: Create a Torrent Automation System",
+            //     link: "/ideas/0002-torrent-automation/",
+            // },
             {
                 label: "SOC-0003: Fill in VS Code's Swift Development Gaps",
                 link: "/ideas/0003-swift-vs-code/",
@@ -34,10 +55,10 @@ const sidebar = [
                 label: "SOC-0006: Explore the Private TikTok API",
                 link: "/ideas/0006-private-tiktok-api/",
             },
-            {
-                label: "SOC-0007: Create a High Performance Fountain Parser",
-                link: "/ideas/0007-fountain-parser/",
-            },
+            // {
+            //     label: "SOC-0007: Create a High Performance Fountain Parser",
+            //     link: "/ideas/0007-fountain-parser/",
+            // },
             {
                 label: "SOC-0008: Create a Discourse iOS Client",
                 link: "/ideas/0008-discourse-ios-client/",
@@ -66,10 +87,10 @@ const sidebar = [
                 label: "SOC-0014: Web Framework & Meta-Framework for Swift Wasm",
                 link: "/ideas/0014-swift-wasm-web-framrwork/",
             },
-            {
-                label: "SOC-0015: Create a New Federated Platform Based on ActivityPub",
-                link: "/ideas/0015-new-federated-platform/",
-            },
+            // {
+            //     label: "SOC-0015: Create a New Federated Platform Based on ActivityPub",
+            //     link: "/ideas/0015-new-federated-platform/",
+            // },
             {
                 label: "SOC-0016: Create a Custom Android Launcher",
                 link: "/ideas/0016-android-launcher/",
