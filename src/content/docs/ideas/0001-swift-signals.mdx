@@ -1,0 +1,28 @@
+---
+id: SOC-0001
+title: Create a Reactive State Library for Swift
+size: 40 hours
+difficulty: Intermediate
+# assignedTo: Mark Malstrom
+# status: In Progress
+---
+
+**Project size**: 40 hours
+
+**Estimated difficulty**: Intermediate
+
+### Recommended Skills
+
+-   Basic proficiency in Swift
+-   Familiarity with graph-based reactivity libraries in other languages
+
+### Description
+
+Hybrid pull-and-push-based reactive state management libraries are all the rage in JavaScript. Popularized by Solid.js, signals have become the key to performant web UIs in the past few years and have seen adoption from every major JavaScript framework except one. Having a signals library in Swift would enable an opportunity to write more performant and declarative UI code without using SwiftUI and all of its issues. Swift already has a construct similar to signals with their `Observability` library, but it is largely designed for SwiftUI's internal use and has several issues with general purpose usage.
+
+### Expected Results
+
+-   Working, glitch-free, concurrency-friendly implementation
+-   Published Swift package, ready for consumption
+-   Full test coverage by reimplementing tests from JavaScript signal libraries
+-   Examples of how to use with UIKit and AppKit

@@ -1,0 +1,80 @@
+---
+id: SOC-0026
+title: Swift Language Mode for Astro
+size: 2 months
+difficulty: Hard
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+**Project size**: 2 months
+
+**Estimated difficulty**: Hard
+
+
+### Recommended Skills
+
+* Proficency in Swift
+* Familiarity with the Node.js ecosystem
+* Familiarity with Golang, in which the Astro compiler is written
+
+### Description
+
+From [@nmoo@mas.to](https://mas.to/@nmoo/109745121968494808), Astro core team member:
+
+<blockquote>
+
+Fun fact about the [@astro](https://m.webtoo.ls/@astro) compiler! It is *technically* language agnostic, meaning there's no requirement that frontmatter or expressions must use TypeScript/JavaScript.
+
+The following code would parse just fine, although it wouldn't actually run unless we added support for Rust output.
+
+```astro
+---
+let latin1: &[u8] = b"\xA1Hello world!";
+println!("{:?}", utf8);
+---
+
+<h1>{latin1.iter().cloned().map(char::from).collect()}</h1>
+```
+
+</blockquote>
+
+What if we did that, but for Swift? Write Swift on the backend and HTML/CSS/front-end JavaScript frameworks for the front-end. Should make for a really fast website that is very compatible with your iOS app's data model...
+
+```astro title="Trips.astro"
+---
+// import Countdown ?
+
+let upcomingTrips = FetchDescriptor<Trip>(
+    predicate: #Predicate { $0.startDate > Date.now },
+    sortBy: [.init(\.startDate)]
+)
+
+upcomingTrips.fetchLimit = 50
+upcomingTrips.includePendingChanges = true
+
+let results = await container.mainContext.fetch(upcomingTrips)
+---
+
+<h1>Trips</h1>
+{results.map { trip in
+    <h2>{trip.name}</h2>
+    <Countdown until={trip.startDate.formatted(.iso8601)}>
+}}
+```
+
+{/* h2 { trip.name }
+span { "Starts on: " }
+time { trip.startDate.formatted(.dateTime.day().month(.wide).year()) } */}
+
+
+{/* <h2>{trip.name}</h2>
+<span>Starts on: <span>
+<time>{trip.startDate.formatted(.dateTime.day().month(.wide).year())}</time> */}
+
+
+### Expected Results
+
+* Fork of the Astro compiler and runtime that can process Swift in frontmatter and expressions in Astro templates, along with server-rendered JavaScript frameworks
+* Vite plugin infrastructure to integrate Swift
+* Example website using Astro Swift to demonstrate the technology

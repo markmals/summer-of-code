@@ -1,0 +1,10 @@
+---
+import AstroHead from "@astrojs/starlight/components/Head.astro";
+import { ViewTransitions } from "astro:transitions";
+import type { Props } from "@astrojs/starlight/props";
+
+const props = Astro.props as Props;
+---
+
+<AstroHead {...props} />
+<ViewTransitions />

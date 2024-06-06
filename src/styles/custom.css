@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+
+/* THEME: */
+@font-face {
+    src: url("/fonts/YouTube-Sans-Bold.woff2");
+    font-family: "YouTube Sans";
+    font-style: normal;
+    font-weight: 700;
+}
+
+@font-face {
+    src: url("/fonts/YouTube-Sans-Light.woff2");
+    font-family: "YouTube Sans";
+    font-style: normal;
+    font-weight: 300;
+}
+
+@font-face {
+    src: url("/fonts/YouTube-Sans-Medium.woff2");
+    font-family: "YouTube Sans";
+    font-style: normal;
+    font-weight: 500;
+}
+
+:root {
+    --sl-font-system-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+}
+
+/* Dark mode colors. */
+:root {
+    --sl-color-accent-low: #0f1f4f;
+    --sl-color-accent: #234bff;
+    --sl-color-accent-high: #fbbf24;
+    --sl-color-white: #ffffff;
+    --sl-color-gray-1: #eaeef3;
+    --sl-color-gray-2: #bec2c9;
+    --sl-color-gray-3: #848c98;
+    --sl-color-gray-4: #515963;
+    --sl-color-gray-5: #313943;
+    --sl-color-gray-6: #202731;
+    --sl-color-black: #15181d;
+
+    --color-code-bg-1: rgba(237, 238, 255, 0.02);
+    --color-code-bg-2: rgba(238, 237, 255, 0.04);
+}
+
+/* Light mode colors. */
+:root[data-theme="light"] {
+    --sl-color-accent-low: #c5d7ff;
+    --sl-color-accent: #264fff;
+    --sl-color-accent-high: #122875;
+    --sl-color-white: #001738;
+    --sl-color-gray-1: #002553;
+    --sl-color-gray-2: #003672;
+    --sl-color-gray-3: #0055ad;
+    --sl-color-gray-4: #2589ff;
+    --sl-color-gray-5: #9ac5ff;
+    --sl-color-gray-6: #e3efff;
+    --sl-color-gray-7: #f1f7ff;
+    --sl-color-black: #ffffff;
+
+    --color-code-bg-1: rgba(239, 237, 255, 0.1);
+    --color-code-bg-2: rgba(237, 237, 255, 0.25);
+}
+
+/* OVERRIDES: */
+
+@media (prefers-color-scheme: light) {
+    h1#_top {
+        color: #1a2430;
+    }
+}
+
+h1#_top {
+    font-family: "YouTube Sans";
+    font-weight: 700;
+}
+
+.light {
+    font-weight: 300;
+}
+
+.tagline {
+    font-family: "YouTube Sans";
+    font-weight: 500;
+}
+
+.action.primary {
+    font-family: "YouTube Sans";
+    font-weight: 500;
+    font-size: 1.125rem;
+}
+
+h2#how-it-works {
+    font-family: "YouTube Sans";
+    font-weight: 700;
+}
+
+.expressive-code .frame pre {
+    background: linear-gradient(var(--color-code-bg-1), var(--color-code-bg-2)) !important;
+}
+
+.expressive-code pre {
+    border: 1px solid var(--sl-color-gray-6) !important;
+    border-radius: 0.5rem !important;
+}
+
+.expressive-code .frame.has-title pre {
+    border-top-width: 0px !important;
+    border-radius: 0 0 0.5rem 0.5rem !important;
+}
+
+.expressive-code .frame {
+    border-radius: 0.5rem !important;
+}
+
+.expressive-code .frame .header {
+    border-radius: 0.5rem 0.5rem 0 0 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+    .expressive-code .frame.has-title:not(.is-terminal) .header {
+        background: var(--sl-color-black) !important;
+    }
+
+    .expressive-code .frame.has-title:not(.is-terminal) .title {
+        background: rgba(36, 35, 43, 0.3) !important;
+        background-clip: padding-box !important;
+        border-right: 1px solid var(--sl-color-gray-6) !important;
+    }
+
+    .expressive-code .frame.has-title:not(.is-terminal) .header::before {
+        border: var(--ec-brdWd) solid var(--sl-color-gray-6) !important;
+    }
+}
+
+.expressive-code .frame.has-title:not(.is-terminal) .title {
+    border-radius: 0.5rem 0 0 0 !important;
+    border-right: 1px solid var(--ec-frm-edTabBarBrdCol) !important;
+}
+
+.expressive-code .frame.has-title:not(.is-terminal) .title::after {
+    border-top: none !important;
+    border-bottom: var(--ec-frm-edActTabIndHt) solid var(--ec-frm-edActTabIndTopCol) !important;
+}

@@ -1,0 +1,84 @@
+---
+id: SOC-0004
+title: Implement a Solid.js Renderer for UIKit
+size: 120 hours
+difficulty: Hard
+---
+
+**Project size**: 120 hours
+
+**Estimated difficulty**: Hard
+
+### Recommended Skills
+
+-   Experience with C++, Objective-C, and Objective-C++
+-   Familiarity with V8 and its C++ API
+-   Knoweldge about how Xcode projects build iOS apps
+-   Proficency in UIKit
+-   Familiarity with Solid.js and its core APIs
+
+### Description
+
+[Solid.js](https://www.solidjs.com) is among the [most performant popular JavaScript frameworks available](https://krausest.github.io/js-framework-benchmark/current.html), being nearly indistinguishable from vanilla JS. It uses JSX/TSX for its templating, similar to React, but it has a different compile-time transform which utilizes signals instead of a vDOM and makes Solid much more performant. Solid also provides a [universal renderer](https://github.com/solidjs/solid/tree/main/packages/solid/universal) which provides a very simile interface, allowing you to create a non-DOM renderer for Solid (like React Native) using lowercase "native" elements (e.g. `<ui-collection-view>` or `<ns-toolbar>`) instead of uppercase component functions (e.g. `<UICollectionView>` or `<NSToolbar>`). To create custom non-DOM components, you don't even need the custom renderer. You could just wrap native functionality in a Solid component and return children, for example:
+
+```tsx
+// Definition:
+import { createEffect } from "solid-js";
+import { UILabel as UIKitLabel, UITapGestureRecognizer } from "nativescript";
+
+export namespace UILabel {
+    export interface Props {
+        /* ... */
+    }
+}
+
+export function UILabel(props: UILabel.Props) {
+    const label = UIKitLabel.alloc().init();
+
+    createEffect(() => (label.text = props.children));
+    createEffect(() => (label.font = props.font));
+    createEffect(() => (label.textColor = props.textColor));
+
+    if (props.onTap) {
+        const tap = UITapGestureRecognizer.alloc().initWithAction(props.onTap);
+
+        label.addGestureRecognizer(tap);
+    }
+
+    return label;
+}
+
+// Usage:
+import { createSignal, UILabel, render } from "solid-js-uikit";
+import { UIFont, UIColor, UIApplication } from "nativescript";
+
+function MyComponent() {
+    const [message, setMessage] = createSignal("Hello!");
+
+    return (
+        <UILabel
+            font={UIFont.boldSystemFontOfSize(17)}
+            textColor={UIColor.systemRedColor}
+            onTap={() => setMessage("Goodbye!")}
+        >
+            {message()}
+        </UILabel>
+    );
+}
+
+render(() => <MyComponent />, UIApplication.sharedApplication);
+```
+
+Utilizing [NativeScript](https://nativescript.org) and its [custom V8 engine](https://github.com/NativeScript/ios), which has runtime access to all host classes of the device on which it's running, we can create a custom Solid.js renderer for UIKit on iOS that maps directly to instances of the correct UIKit classes (not subclasses or generic views) and performs with native speed thanks to Solid's efficent rendering model. This would allow anyone to write iOS apps using TypeScript, JSX/TSX, and Solid.js/signals that look, feel, and perform as if they were written with Swift or Objective-C and UIKit.
+
+### Expected Results
+
+-   A binary that can be embedded into an iOS app to run Solid.js UIKit apps
+-   An example iOS app
+-   Command line tooling for development & deployment
+
+#### Stretch Goals
+
+-   Hot module reloading
+-   Example apps for iPadOS, Mac Catalyst, tvOS, and visionOS
+-   Visual Studio Code tooling for development & deployment

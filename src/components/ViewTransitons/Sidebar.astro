@@ -1,0 +1,14 @@
+---
+import type { Props } from "@astrojs/starlight/props";
+import Insidebar from "./Insidebar.astro";
+---
+
+<!-- <div transition:persist>
+    <AstroSidebar {...props} />
+    <div class="md:sl-hidden">
+        <MobileMenuFooter {...Astro.props} />
+    </div>
+</div> -->
+<div transition:persist>
+    <Insidebar sublist={Astro.props.sidebar} />
+</div>
