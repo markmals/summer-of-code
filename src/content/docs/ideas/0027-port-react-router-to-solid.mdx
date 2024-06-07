@@ -17,7 +17,17 @@ author: Mark Malstrom
 
 ### Description
 
-[Remix as we know it today is becoming React Router v7](https://remix.run/blog/merging-remix-and-react-router). Along with this change, React Router is becoming much more closely intertwined with React Server Components and the [future of "Remix" beyond React Router v7 will be very RSC-focused](https://remix.run/blog/incremental-path-to-react-19). Because of this, the Remix team has decided to sunset [`@remix-run/router`](), their standalone vanilla JavaScript router. This is a shame because we used to be able to wrap this vanilla JS router with other frameworks in order to get the benifits of Remix & React Router in other JavaScript frameworks, such as:
+[Remix as we know it today is becoming React Router v7](https://remix.run/blog/merging-remix-and-react-router). Along with this change, React Router is becoming much more closely intertwined with React Server Components and the [future of "Remix" beyond React Router v7 will be very RSC-focused](https://remix.run/blog/incremental-path-to-react-19). Because of this, the Remix team has [decided to sunset](https://github.com/remix-run/remix/discussions/7823) [`@remix-run/router`](https://www.npmjs.com/package/@remix-run/router), their standalone vanilla JavaScript router:
+
+> In the beginning of Remix, **we also wanted to leave the door open for making the rendering library pluggable**, hence `@remix-run/react`.
+>
+> Fast forward three years again and we've seen nearly every rendering lib implement their own remix-like framework with loaders, actions, adapters, nested routes, etc. We were interested in collaborating as a shared framework, but not interested in competing directly (we wish them well, they've done great work).
+>
+> We also really like the core ideas behind RSC in React. Making the rendering lib pluggable would prove to be a huge challenge and make Remix with React vs. something else very different. **This is no longer a goal of the project.**
+
+(emphasis mine)
+
+This is a shame because we used to be able to wrap this vanilla JS router with other frameworks in order to get the benifits of Remix & React Router in other JavaScript frameworks, such as:
 
 -   [Vue](https://github.com/brophdawg11/remix-routers/tree/main/packages/vue)
 -   [Svelte](https://github.com/brophdawg11/remix-routers/tree/main/packages/svelte)
