@@ -41,6 +41,8 @@ However, I'm not a fan of React's re-render component model. I'm much more a fan
 
 So now, in order to have my ideal JavaScript meta-framework, I'll need to rewrite the core of React Router (v7) specifically for Solid and expose a very similar API. I may even be able to add some facsimile of Server Components support as Ryan works on those for Solid Start. I'll want to make sure to bring over all the goodies of the React Router v7 Vite plugin too.
 
+One thing to keep in mind with this port is that we have the opportunity to tune this router to be more fine-grained and in line with Solid's rendering model. The Remix Router was very coarse grained. It had one `.subscribe()` method which emitted a single `RouterState` instance anytime _anything_ in the router changed and all the hooks were derived from that. We can make our port natively fine grained, with a signal (or store property) for each and every piece of state.
+
 ### Expected Results
 
 -   Published NPM package for Remix Router with the core client router runtime as well as a Vite plugin and server runtume
