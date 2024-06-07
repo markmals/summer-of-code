@@ -1,0 +1,41 @@
+---
+id: SOC-0027
+title: Port React Router v7 to Solid.js
+size: 3 months
+difficulty: Intermediate
+author: Mark Malstrom
+---
+
+**Project size**: 3 months
+
+**Estimated difficulty**: Intermediate
+
+### Recommended Skills
+
+-   Proficency with TypeScript, React, & Solid.js
+-   Familiarity with JavaScript hybrid router architecture
+
+### Description
+
+[Remix as we know it today is becoming React Router v7](https://remix.run/blog/merging-remix-and-react-router). Along with this change, React Router is becoming much more closely intertwined with React Server Components and the [future of "Remix" beyond React Router v7 will be very RSC-focused](https://remix.run/blog/incremental-path-to-react-19). Because of this, the Remix team has decided to sunset [`@remix-run/router`](), their standalone vanilla JavaScript router. This is a shame because we used to be able to wrap this vanilla JS router with other frameworks in order to get the benifits of Remix & React Router in other JavaScript frameworks, such as:
+
+-   [Vue](https://github.com/brophdawg11/remix-routers/tree/main/packages/vue)
+-   [Svelte](https://github.com/brophdawg11/remix-routers/tree/main/packages/svelte)
+-   [Solid](https://github.com/brophdawg11/remix-routers/tree/f58e5efd372591ad7638fd1458925158102cfd75/packages/solid)
+-   [Preact](https://github.com/brophdawg11/remix-routers/tree/ac79b0a6609aa60015e8360b7f8ed8253796f883/packages/preact)
+-   [Lit](https://github.com/markmals/campfire-router)
+
+And now I have a conundrum here. Because the Remix model of writing server + client web apps, with `loader`, `action`, `links`, `meta`, `useLoaderData()`, `<Form />`, `useFetcher()` & `<fetcher.Form />`, `clientLoader` & `clientAction`, `ErrorBoundary`, `HydrateFallback`, nested routing, server adapters, focus on progressive enhancement, and optimistic UI is my favorite way of writing web apps. This model makes it really easy to use HTML primitives (or components that look and act like them) while preserving client-side state and making your websites feel like highly interactive apps with very little effort.
+
+However, I'm not a fan of React's re-render component model. I'm much more a fan of Solid's fine-grained reactivity model, which is highly performant with client-side interactions and much easier to reason about, in my opinion. Solid also has a drastically smaller bundle size when compared to React (~4kb vs ~36kb).
+
+So now, in order to have my ideal JavaScript meta-framework, I'll need to rewrite the core of React Router (v7) specifically for Solid and expose a very similar API. I may even be able to add some facsimile of Server Components support as Ryan works on those for Solid Start. I'll want to make sure to bring over all the goodies of the React Router v7 Vite plugin too.
+
+### Expected Results
+
+-   Published NPM package for Remix Router with the core client router runtime as well as a Vite plugin and server runtume
+
+#### Stretch Goals
+
+-   Add support for my favorite Astro features: [content collections](https://docs.astro.build/en/guides/content-collections/), [Astro DB](https://docs.astro.build/en/guides/astro-db/), [view transition directives](https://docs.astro.build/en/guides/view-transitions/#transition-directives), [built-in view transiton animations](https://docs.astro.build/en/guides/view-transitions/#built-in-animation-directives), [integrations API](https://docs.astro.build/en/guides/integrations-guide), and [dev toolbar](https://docs.astro.build/en/guides/dev-toolbar/)
+-   Enable some sort of server components for Solid.js and Remix Router, returning components from route loaders

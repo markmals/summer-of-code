@@ -135,6 +135,10 @@ const sidebar = [
                 label: "SOC-0026: Swift Language Mode for Astro",
                 link: "/ideas/0026-astro-swift-language-mode/",
             },
+            {
+                label: "SOC-0027: Port React Router v7 to Solid.js",
+                link: "/ideas/0027-port-react-router-to-solid/",
+            },
         ],
     },
 ];
